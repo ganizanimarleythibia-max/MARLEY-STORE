@@ -1,5 +1,4 @@
-
-name: Deploy MARLEY-STORE to GitHub Pages
+name: Build MARLEY-STORE APK
 
 on:
   push:
@@ -9,28 +8,52 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          path: .
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          node-version: 20
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Android app
+        run: |
+          cordova create /tmp/marley-store com.marley.store "MARLEY STORE"
+          cd /tmp/marley-store
+          cordova platform add android
+
+      - name: Copy website files
+        run: |
+          cd /tmp/marley-store
+          rm -rf www
+          mkdir www
+          rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='platforms' --exclude='plugins' --exclude='apk-output' "$GITHUB_WORKSPACE/" www/
+
+      - name: Build APK
+        run: |
+          cd /tmp/marley-store
+          cordova build android --debug
+          mkdir -p "$GITHUB_WORKSPACE/apk-output"
+          cp platforms/android/app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/apk-output/MARLEY-STORE.apk"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MARLEY-STORE-APK
+          path: apk-output/MARLEY-STORE.apk
+          if-no-files-found: error
