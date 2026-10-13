@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARLEY STORE</title>
+<style>
+body{font-family:Arial;background:#f3f4f6;margin:0;color:#222}
+header{background:#087b45;color:white;padding:22px;text-align:center}
+nav{display:flex;justify-content:center;gap:10px;padding:15px;flex-wrap:wrap}
+button{padding:12px;border:0;border-radius:8px;background:#087b45;color:white}
+main{padding:16px}
+input{padding:12px;width:90%;margin:8px 0}
+.card{background:white;padding:18px;margin:12px 0;border-radius:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>MARLEY STORE</h1>
+<p>Clothes • Shoes • Gadgets</p>
+</header>
+<nav>
+<button onclick="show('Clothes')">Clothes</button>
+<button onclick="show('Shoes')">Shoes</button>
+<button onclick="show('Gadgets')">Gadgets</button>
+</nav>
+<main>
+<div class="card">
+<h2 id="category">Welcome to Marley Store</h2>
+<p>Shop your favourite products here.</p>
+<input id="product" placeholder="Product name">
+<input id="price" type="number" placeholder="Price in Malawi Kwacha">
+<button onclick="addProduct()">Add Product</button>
+</div>
+<div id="items"></div>
+</main>
+<script>
+let category="Clothes";
+function show(c){
+category=c;
+document.getElementById("category").textContent=c;
+}
+function addProduct(){
+let p=document.getElementById("product").value;
+let price=document.getElementById("price").value;
+if(!p||!price){alert("Enter product name and price");return;}
+let card=document.createElement("div");
+card.className="card";
+card.textContent=category+" - "+p+" - MK "+price;
+document.getElementById("items").appendChild(card);
+document.getElementById("product").value="";
+document.getElementById("price").value="";
+}
+</script>
+</body>
+</html>
