@@ -3,180 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARLEY-STORE | Marketplace</title>
+    <title>MARLEY STORE | Marketplace</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fcfcfc;
-            color: #333;
+        }
+        body {
+            background-color: #f0f2f5;
+            color: #1c1e21;
         }
         header {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            padding: 15px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ccced2;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .logo {
             font-size: 22px;
-            font-weight: bold;
-            color: #ff6600;
+            font-weight: 800;
+            color: #1877f2;
         }
         .logo span {
-            color: #222;
+            color: #f57c00;
         }
-        .hero {
-            background: linear-gradient(135deg, #fff5ec, #ffe6d5);
-            padding: 30px 20px;
-            border-radius: 12px;
-            margin: 20px;
-            text-align: left;
+        .search-bar {
+            background: #f0f2f5;
+            border-radius: 20px;
+            padding: 8px 15px;
+            width: 50%;
+            max-width: 300px;
         }
-        .hero h1 {
-            font-size: 26px;
-            color: #222;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            color: #555;
+        .search-bar input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            outline: none;
             font-size: 14px;
-            margin-bottom: 20px;
         }
-        .btn-primary {
-            background-color: #ff6600;
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .product-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #e4e6eb;
+        }
+        .product-info {
+            padding: 12px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1c1e21;
+            margin-bottom: 4px;
+        }
+        .title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #050505;
+            margin-bottom: 6px;
+        }
+        .details {
+            font-size: 12px;
+            color: #65676b;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .btn-chat {
+            background-color: #25D366;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 14px;
+            text-align: center;
             text-decoration: none;
-            display: inline-block;
-        }
-        .form-container {
-            background: white;
-            border: 1px solid #e1e1e1;
-            border-radius: 12px;
-            margin: 20px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .form-container h2 {
-            font-size: 20px;
-            margin-bottom: 5px;
-            color: #222;
-        }
-        .form-container p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
             display: block;
-            font-weight: bold;
             font-size: 13px;
-            margin-bottom: 5px;
-            color: #333;
         }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-            box-sizing: border-box;
+        .btn-chat:hover {
+            background-color: #1ebd56;
         }
-        .product-list {
-            margin: 20px;
-        }
-        .product-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .product-card img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-        .product-info h3 {
-            margin: 0 0 5px 0;
-            font-size: 16px;
-        }
-        .product-info .price {
-            color: #ff6600;
-            font-weight: bold;
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #65676b;
+            font-size: 13px;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">MARLEY <span>STORE</span></div>
+        <div class="logo">MARLEY <span>MARKETPLACE</span></div>
+        <div class="search-bar">
+            <input type="text" placeholder="Funsani katundu...">
+        </div>
     </header>
 
-    <div class="hero">
-        <h1>Find products. Sell with MARLEY STORE.</h1>
-        <p>A marketplace for sharing products, prices and details with customers.</p>
-        <a href="#submit-section" class="btn-primary">+ Add your product</a>
+    <div class="container">
+        <h2 class="section-title">Katundu Yense Wogulitsa</h2>
+
+        <div class="marketplace-grid">
+
+            <!-- PRODUCT 1: SNEAKERS -->
+            <div class="product-card">
+                <img src="sneaker.jpg" alt="Sneaker Shoes" onerror="this.src='https://via.placeholder.com/250x200?text=Sneakers+Shoes'">
+                <div class="product-info">
+                    <div>
+                        <div class="price">MWK 35,000</div>
+                        <div class="title">Quality Jordan / Nike Sneakers</div>
+                        <div class="details">
+                            • Size: 39 - 44<br>
+                            • Color: Black / White / Red<br>
+                            • Condition: Brand New
+                        </div>
+                    </div>
+                    <a href="https://wa.me/265995481970?text=Kodi%20Sneakers%20izi%20zilipo?%20(MWK%2035,000)" class="btn-chat" target="_blank">💬 Is this available? (Funsa pa WhatsApp)</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 2: SMARTPHONE -->
+            <div class="product-card">
+                <img src="phone.jpg" alt="Smart Phone" onerror="this.src='https://via.placeholder.com/250x200?text=Smart+Phone'">
+                <div class="product-info">
+                    <div>
+                        <div class="price">MWK 145,000</div>
+                        <div class="title">Samsung Galaxy Smart Phone</div>
+                        <div class="details">
+                            • Storage: 128GB / 4GB RAM<br>
+                            • Battery: 5000mAh<br>
+                            • Condition: Clean Original
+                        </div>
+                    </div>
+                    <a href="https://wa.me/265995481970?text=Kodi%20Foni%20iyi%20yilipo?%20(MWK%20145,000)" class="btn-chat" target="_blank">💬 Is this available? (Funsa pa WhatsApp)</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 3: ZOVALA -->
+            <div class="product-card">
+                <img src="shirt.jpg" alt="Clothes" onerror="this.src='https://via.placeholder.com/250x200?text=Quality+Clothes'">
+                <div class="product-info">
+                    <div>
+                        <div class="price">MWK 20,000</div>
+                        <div class="title">Designer Shirts & Jackets</div>
+                        <div class="details">
+                            • Size: M, L, XL, XXL<br>
+                            • Material: Cotton<br>
+                            • Condition: Brand New
+                        </div>
+                    </div>
+                    <a href="https://wa.me/265995481970?text=Kodi%20Chovala%20ichi%20chilipo?%20(MWK%2020,000)" class="btn-chat" target="_blank">💬 Is this available? (Funsa pa WhatsApp)</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- FOMU YOTUMIZIRA KATUNDU (SUBMIT PRODUCT) -->
-    <div class="form-container" id="submit-section">
-        <h2>Submit a product</h2>
-        <p>Add a clear photo, product name, price and description.</p>
-        
-        <form id="productForm">
-            <div class="form-group">
-                <label>Product photo (camera or gallery)</label>
-                <input type="file" id="prodImage" accept="image/*" required>
-            </div>
-
-            <div class="form-group">
-                <label>Item name</label>
-                <input type="text" id="prodName" placeholder="e.g. Nike Sneakers / Samsung Phone" required>
-            </div>
-
-            <div class="form-group">
-                <label>Price (MWK)</label>
-                <input type="text" id="prodPrice" placeholder="e.g. 35,000" required>
-            </div>
-
-            <div class="form-group">
-                <label>Description / Details</label>
-                <textarea id="prodDesc" rows="3" placeholder="Ikani ma details a katundu pano..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-primary" style="width: 100%;">Tumiza pa WhatsApp (Order)</button>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('productForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            let name = document.getElementById('prodName').value;
-            let price = document.getElementById('prodPrice').value;
-            let desc = document.getElementById('prodDesc').value;
-            
-            let whatsappUrl = `https://wa.me/265995481970?text=Bwana%20ndikufuna%20kugula%20izi:%0A*Katundu:*%20${encodeURIComponent(name)}%0A*Mtengo:*%20MWK%20${encodeURIComponent(price)}%0A*Details:*%20${encodeURIComponent(desc)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        });
-    </script>
+    <footer>
+        <p>&copy; 2026 MARLEY STORE Marketplace. Live Sales via WhatsApp.</p>
+    </footer>
 
 </body>
 </html>
