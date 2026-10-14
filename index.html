@@ -1,290 +1,105 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ny">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#075e3b">
-<title>MARLEY STORE Marketplace</title>
-<style>
-:root{--green:#087b45;--dark:#075e3b;--bg:#f3f6f4}
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;margin:0;background:var(--bg);color:#202820}
-header{background:var(--dark);color:white;padding:22px 16px;text-align:center}
-header h1{margin:0;font-size:28px;letter-spacing:1px}
-header p{margin:8px 0 0}
-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:white}
-button,.btn{border:0;border-radius:8px;padding:12px 15px;background:var(--green);color:white;font-weight:bold;cursor:pointer}
-button.active{background:#064529}
-main{max-width:950px;margin:auto;padding:16px}
-input,select,textarea{display:block;width:100%;padding:12px;margin:8px 0 14px;border:1px solid #ccd5ce;border-radius:8px;font:inherit;background:white}
-label{font-weight:bold;font-size:14px}
-.card{background:white;padding:16px;margin:14px 0;border-radius:12px;box-shadow:0 2px 8px #0000000d}
-h2{margin-top:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.product{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px #00000012}
-.product img{width:100%;height:190px;object-fit:cover;background:#e8eee9}
-.product-info{padding:13px}
-.price{font-size:20px;color:var(--green);font-weight:bold}
-.muted{color:#657168;font-size:13px}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.row>*{flex:1}
-.hidden{display:none!important}
-.whatsapp{display:block;text-align:center;text-decoration:none;background:#167a46;color:white;padding:12px;border-radius:8px;margin-top:10px;font-weight:bold}
-.delete{background:#a52828;margin-top:8px}
-footer{text-align:center;padding:24px;color:#657168;font-size:13px}
-.notice{background:#fff5d9;padding:12px;border-radius:8px;font-size:13px;line-height:1.5}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARLEY-STORE | Online Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #232f3e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .price {
+            color: #d9534f;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #ddd;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-<h1>MARLEY STORE</h1>
-<p>Buy • Sell • Connect Across Africa</p>
-</header>
+    <header>
+        <h1>MARLEY-STORE</h1>
+        <p>Gula ndi kuitanitsa katundu mwachangu pa intaneti</p>
+    </header>
 
-<nav>
-<button class="active" onclick="filterCategory('All',this)">All Products</button>
-<button onclick="filterCategory('Clothes',this)">Clothes</button>
-<button onclick="filterCategory('Shoes',this)">Shoes</button>
-<button onclick="filterCategory('Gadgets',this)">Gadgets</button>
-<button onclick="document.getElementById('sell').scrollIntoView({behavior:'smooth'})">Sell Product</button>
-</nav>
+    <div class="container">
+        <h2>Katundu Wathu</h2>
+        <div class="product-grid">
 
-<main>
-<section class="card">
-<h2>Find what you need</h2>
-<input id="search" type="search" placeholder="Search products..." oninput="renderProducts()">
-<p class="muted">Explore products listed on this device.</p>
-</section>
+            <!-- Chinthu Choyamba -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150" alt="Chinthu 1">
+                <h3>Dzina la Chinthu 1</h3>
+                <p>Ndalama:</p>
+                <div class="price">MWK 15,000</div>
+                <!-- Sinthani nambala ya WhatsApp pansi pano (chotsani + kapena 0 koyambirira, mfano: 265XXXXXXXXX) -->
+                <a href="https://wa.me/265999000000?text=Sogolo%20ndikufuna%20gula%20Chinthu%201" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
+            </div>
 
-<section class="card" id="sell">
-<h2>Sell a Product</h2>
-<p class="muted">Add your product details below.</p>
+            <!-- Chinthu Chachiwiri -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150" alt="Chinthu 2">
+                <h3>Dzina la Chinthu 2</h3>
+                <p>Ndalama:</p>
+                <div class="price">MWK 25,000</div>
+                <a href="https://wa.me/265999000000?text=Sogolo%20ndikufuna%20gula%20Chinthu%202" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
+            </div>
 
-<form id="productForm">
-<label for="name">Product name *</label>
-<input id="name" maxlength="80" required placeholder="e.g. Samsung phone">
+        </div>
+    </div>
 
-<label for="category">Category *</label>
-<select id="category" required>
-<option value="Clothes">Clothes</option>
-<option value="Shoes">Shoes</option>
-<option value="Gadgets">Gadgets</option>
-<option value="Other">Other</option>
-</select>
+    <footer>
+        <p>&copy; 2026 MARLEY-STORE. Ufulu wonse ndi wotetezedwa.</p>
+    </footer>
 
-<label for="price">Price in Malawi Kwacha (MK) *</label>
-<input id="price" type="number" min="1" max="1000000000" required placeholder="e.g. 50000">
-
-<label for="description">Description</label>
-<textarea id="description" maxlength="500" rows="3" placeholder="Describe condition, size, colour, etc."></textarea>
-
-<label for="photo">Product photo</label>
-<input id="photo" type="file" accept="image/*">
-<p class="muted">Choose a photo from your phone. A smaller copy will be saved.</p>
-
-<label for="phone">Seller phone number *</label>
-<input id="phone" type="tel" maxlength="20" required placeholder="e.g. 0995481970">
-
-<button type="submit">Publish Product</button>
-</form>
-</section>
-
-<section>
-<h2>Products for Sale</h2>
-<p class="muted" id="count">0 products</p>
-<div id="items" class="grid"></div>
-<p id="empty" class="card">No products yet. Be the first to list a product!</p>
-</section>
-
-<section class="card">
-<h2>How buying works</h2>
-<p>1. Find a product you like.</p>
-<p>2. Contact the seller directly.</p>
-<p>3. Agree on the price and delivery.</p>
-<p>4. Pay by cash as agreed with the seller.</p>
-<div class="notice">Safety: Check the product and seller before paying. Arrange delivery carefully. MARLEY STORE does not process payments.</div>
-</section>
-</main>
-
-<footer>
-<strong>MARLEY STORE</strong><br>
-Buy • Sell • Connect
-</footer>
-
-<script>
-const STORAGE_KEY = "marley_store_products_v1";
-let products = [];
-let activeCategory = "All";
-
-try {
-  products = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  if (!Array.isArray(products)) products = [];
-} catch (e) {
-  products = [];
-}
-
-function saveProducts() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-    return true;
-  } catch (e) {
-    alert("Storage is full. Try using a smaller photo or removing old listings.");
-    return false;
-  }
-}
-
-function filterCategory(category, button) {
-  activeCategory = category;
-  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-  if (button) button.classList.add("active");
-  renderProducts();
-}
-
-function makeWhatsAppNumber(phone) {
-  let digits = phone.replace(/\D/g, "");
-  if (digits.startsWith("00")) digits = digits.slice(2);
-  if (digits.startsWith("0")) digits = "265" + digits.slice(1);
-  return digits;
-}
-
-function makeElement(tag, className, text) {
-  const el = document.createElement(tag);
-  if (className) el.className = className;
-  if (text !== undefined) el.textContent = text;
-  return el;
-}
-
-function renderProducts() {
-  const container = document.getElementById("items");
-  const query = document.getElementById("search").value.toLowerCase().trim();
-  container.replaceChildren();
-
-  const filtered = products.filter(p => {
-    const matchesCategory = activeCategory === "All" || p.category === activeCategory;
-    const searchable = (p.name + " " + p.category + " " + (p.description || "")).toLowerCase();
-    return matchesCategory && searchable.includes(query);
-  });
-
-  document.getElementById("count").textContent =
-    filtered.length + (filtered.length === 1 ? " product" : " products");
-  document.getElementById("empty").classList.toggle("hidden", filtered.length > 0);
-
-  filtered.forEach(p => {
-    const card = makeElement("article", "product");
-    if (p.photo) {
-      const img = document.createElement("img");
-      img.src = p.photo;
-      img.alt = p.name;
-      card.appendChild(img);
-    }
-
-    const info = makeElement("div", "product-info");
-    info.appendChild(makeElement("h3", "", p.name));
-    info.appendChild(makeElement("p", "muted", p.category));
-    info.appendChild(makeElement("p", "price", "MK " + Number(p.price).toLocaleString("en-MW")));
-    if (p.description) info.appendChild(makeElement("p", "", p.description));
-    info.appendChild(makeElement("p", "muted", "Seller: " + p.phone));
-
-    const link = document.createElement("a");
-    link.className = "whatsapp";
-    link.textContent = "Contact Seller on WhatsApp";
-    link.href = "https://wa.me/" + makeWhatsAppNumber(p.phone) +
-      "?text=" + encodeURIComponent("Hello, I am interested in " + p.name + " listed on MARLEY STORE.");
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    info.appendChild(link);
-
-    const del = makeElement("button", "delete", "Remove Listing");
-    del.type = "button";
-    del.onclick = () => {
-      if (confirm("Remove this listing from this device?")) {
-        products = products.filter(item => item.id !== p.id);
-        if (saveProducts()) renderProducts();
-      }
-    };
-    info.appendChild(del);
-    card.appendChild(info);
-    container.appendChild(card);
-  });
-}
-
-function resizePhoto(file) {
-  return new Promise((resolve, reject) => {
-    if (!file) return resolve("");
-    if (!file.type.startsWith("image/")) {
-      return reject(new Error("Please choose an image file."));
-    }
-    const reader = new FileReader();
-    reader.onerror = () => reject(new Error("Could not read the photo."));
-    reader.onload = () => {
-      const img = new Image();
-      img.onerror = () => reject(new Error("Could not open the photo."));
-      img.onload = () => {
-        const maxSide = 800;
-        const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
-        const canvas = document.createElement("canvas");
-        canvas.width = Math.round(img.width * scale);
-        canvas.height = Math.round(img.height * scale);
-        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL("image/jpeg", 0.7));
-      };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-document.getElementById("productForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value.trim();
-  const category = document.getElementById("category").value;
-  const price = Number(document.getElementById("price").value);
-  const description = document.getElementById("description").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const file = document.getElementById("photo").files[0];
-
-  if (!name || !Number.isFinite(price) || price <= 0 || !phone) {
-    alert("Please enter a product name, valid price and seller phone number.");
-    return;
-  }
-
-  const submitButton = this.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  submitButton.textContent = "Saving...";
-
-  try {
-    const photo = await resizePhoto(file);
-    const item = {
-      id: Date.now().toString() + Math.random().toString(36).slice(2),
-      name, category, price, description, phone, photo
-    };
-
-    products.unshift(item);
-    if (!saveProducts()) {
-      products.shift();
-      return;
-    }
-
-    this.reset();
-    activeCategory = "All";
-    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-    document.querySelector("nav button").classList.add("active");
-    document.getElementById("search").value = "";
-    renderProducts();
-    alert("Product saved on this device!");
-    document.getElementById("items").scrollIntoView({behavior:"smooth"});
-  } catch (error) {
-    alert(error.message || "Could not save the product.");
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Publish Product";
-  }
-});
-
-renderProducts();
-</script>
 </body>
 </html>
