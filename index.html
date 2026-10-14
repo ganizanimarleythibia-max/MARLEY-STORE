@@ -15,18 +15,25 @@
         header {
             background-color: #232f3e;
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
         }
         .container {
             padding: 20px;
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
+        }
+        .category-title {
+            border-bottom: 2px solid #232f3e;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #232f3e;
         }
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
+            margin-top: 15px;
         }
         .product-card {
             background: white;
@@ -36,8 +43,8 @@
             text-align: center;
         }
         .product-card img {
-            max-width: 100%;
-            height: 150px;
+            width: 100%;
+            height: 180px;
             object-fit: cover;
             border-radius: 5px;
         }
@@ -55,12 +62,13 @@
             border-radius: 5px;
             display: inline-block;
             font-weight: bold;
+            width: 80%;
         }
         footer {
             text-align: center;
             padding: 15px;
             background-color: #ddd;
-            margin-top: 20px;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -68,37 +76,48 @@
 
     <header>
         <h1>MARLEY-STORE</h1>
-        <p>Gula ndi kuitanitsa katundu mwachangu pa intaneti</p>
+        <p>Gula Nsapato, Mafoni ndi Zovala mwachangu pa WhatsApp!</p>
     </header>
 
     <div class="container">
-        <h2>Katundu Wathu</h2>
+
+        <!-- CATEGORY: SNEAKERS -->
+        <h2 class="category-title">👟 Sneaker Shoes</h2>
         <div class="product-grid">
-
-            <!-- Chinthu Choyamba -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/150" alt="Chinthu 1">
-                <h3>Dzina la Chinthu 1</h3>
-                <p>Ndalama:</p>
-                <div class="price">MWK 15,000</div>
-                <!-- Sinthani nambala ya WhatsApp pansi pano (chotsani + kapena 0 koyambirira, mfano: 265XXXXXXXXX) -->
-                <a href="https://wa.me/265999000000?text=Sogolo%20ndikufuna%20gula%20Chinthu%201" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
+                <img src="sneaker.jpg" alt="Sneakers" onerror="this.src='https://via.placeholder.com/200?text=Sneaker+Shoes'">
+                <h3>Sneaker Shoes</h3>
+                <div class="price">MWK 35,000</div>
+                <a href="https://wa.me/265995481970?text=Bwana%20ndikufuna%20kugula%20Sneaker%20Shoes" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
             </div>
-
-            <!-- Chinthu Chachiwiri -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/150" alt="Chinthu 2">
-                <h3>Dzina la Chinthu 2</h3>
-                <p>Ndalama:</p>
-                <div class="price">MWK 25,000</div>
-                <a href="https://wa.me/265999000000?text=Sogolo%20ndikufuna%20gula%20Chinthu%202" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
-            </div>
-
         </div>
+
+        <!-- CATEGORY: MAFONI -->
+        <h2 class="category-title">📱 Smart Phones</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="phone.jpg" alt="Smart Phone" onerror="this.src='https://via.placeholder.com/200?text=Smart+Phone'">
+                <h3>Smart Phone</h3>
+                <div class="price">MWK 120,000</div>
+                <a href="https://wa.me/265995481970?text=Bwana%20ndikufuna%20kugula%20Smart%20Phone" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- CATEGORY: ZOVALA -->
+        <h2 class="category-title">👕 Zovala (Clothes)</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="shirt.jpg" alt="Zovala" onerror="this.src='https://via.placeholder.com/200?text=Clothes'">
+                <h3>Zovala Zamakono</h3>
+                <div class="price">MWK 20,000</div>
+                <a href="https://wa.me/265995481970?text=Bwana%20ndikufuna%20kugula%20Zovala" class="btn-whatsapp" target="_blank">Gula pa WhatsApp</a>
+            </div>
+        </div>
+
     </div>
 
     <footer>
-        <p>&copy; 2026 MARLEY-STORE. Ufulu wonse ndi wotetezedwa.</p>
+        <p>&copy; 2026 MARLEY-STORE. All rights reserved.</p>
     </footer>
 
 </body>
