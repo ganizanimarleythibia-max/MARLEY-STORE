@@ -1,210 +1,100 @@
+
 <!DOCTYPE html>
-<html lang="ny">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARLEY STORE | Marketplace</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #f0f2f5;
-            color: #1c1e21;
-        }
-        header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #ccced2;
-            padding: 12px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #1877f2;
-        }
-        .logo span {
-            color: #f57c00;
-        }
-        .search-bar {
-            background: #f0f2f5;
-            border-radius: 20px;
-            padding: 8px 15px;
-            width: 50%;
-            max-width: 300px;
-        }
-        .search-bar input {
-            border: none;
-            background: transparent;
-            width: 100%;
-            outline: none;
-            font-size: 14px;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .marketplace-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 15px;
-        }
-        .product-card {
-            background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #e4e6eb;
-        }
-        .product-info {
-            padding: 12px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .price {
-            font-size: 18px;
-            font-weight: 800;
-            color: #1c1e21;
-            margin-bottom: 4px;
-        }
-        .title {
-            font-size: 15px;
-            font-weight: 500;
-            color: #050505;
-            margin-bottom: 6px;
-        }
-        .details {
-            font-size: 12px;
-            color: #65676b;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        .btn-chat {
-            background-color: #25D366;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            font-size: 13px;
-        }
-        .btn-chat:hover {
-            background-color: #1ebd56;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #65676b;
-            font-size: 13px;
-            margin-top: 40px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARLEY STORE</title>
+  <style>
+    body { font-family: Arial; margin: 16px; background: #f5f5f5; }
+    h1 { text-align: center; }
+    #products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+    }
+    .item { background: white; padding: 10px; border-radius: 10px; }
+    .item img { width: 100%; height: 150px; object-fit: cover; }
+    .price { font-weight: bold; color: #087b43; }
+  </style>
 </head>
 <body>
+  <h1>MARLEY STORE</h1>
+  <p>Clothes | Shoes | Gadgets</p>
+  <h3>Products for sale</h3>
+  <div id="status">Loading products...</div>
+  <div id="products"></div>
 
-    <header>
-        <div class="logo">MARLEY <span>MARKETPLACE</span></div>
-        <div class="search-bar">
-            <input type="text" placeholder="Funsani katundu...">
-        </div>
-    </header>
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getFirestore, collection, getDocs }
+      from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-    <div class="container">
-        <h2 class="section-title">Katundu Yense Wogulitsa</h2>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDWU-i3pZKnRrT7iAL8HWqTu9jvNtrVMtg",
+      authDomain: "marley-store-2c77e.firebaseapp.com",
+      projectId: "marley-store-2c77e",
+      storageBucket: "marley-store-2c77e.firebasestorage.app",
+      messagingSenderId: "753148376121",
+      appId: "1:753148376121:web:e23e19324ea28a630209e8",
+      measurementId: "G-F80JYZN6RP"
+    };
 
-        <div class="marketplace-grid">
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-            <!-- PRODUCT 1: SNEAKERS -->
-            <div class="product-card">
-                <img src="sneaker.jpg" alt="Sneaker Shoes" onerror="this.src='https://via.placeholder.com/250x200?text=Sneakers+Shoes'">
-                <div class="product-info">
-                    <div>
-                        <div class="price">MWK 35,000</div>
-                        <div class="title">Quality Jordan / Nike Sneakers</div>
-                        <div class="details">
-                            • Size: 39 - 44<br>
-                            • Color: Black / White / Red<br>
-                            • Condition: Brand New
-                        </div>
-                    </div>
-                    <a href="https://wa.me/265995481970?text=Kodi%20Sneakers%20izi%20zilipo?%20(MWK%2035,000)" class="btn-chat" target="_blank">💬 Is this available? (Funsa pa WhatsApp)</a>
-                </div>
-            </div>
+    async function loadProducts() {
+      const status = document.getElementById("status");
+      const container = document.getElementById("products");
 
-            <!-- PRODUCT 2: SMARTPHONE -->
-            <div class="product-card">
-                <img src="phone.jpg" alt="Smart Phone" onerror="this.src='https://via.placeholder.com/250x200?text=Smart+Phone'">
-                <div class="product-info">
-                    <div>
-                        <div class="price">MWK 145,000</div>
-                        <div class="title">Samsung Galaxy Smart Phone</div>
-                        <div class="details">
-                            • Storage: 128GB / 4GB RAM<br>
-                            • Battery: 5000mAh<br>
-                            • Condition: Clean Original
-                        </div>
-                    </div>
-                    <a href="https://wa.me/265995481970?text=Kodi%20Foni%20iyi%20yilipo?%20(MWK%20145,000)" class="btn-chat" target="_blank">💬 Is this available? (Funsa pa WhatsApp)</a>
-                </div>
-            </div>
+      try {
+        const snapshot = await getDocs(collection(db, "products"));
+        container.replaceChildren();
 
-            <!-- PRODUCT 3: ZOVALA -->
-            <div class="product-card">
-                <img src="shirt.jpg" alt="Clothes" onerror="this.src='https://via.placeholder.com/250x200?text=Quality+Clothes'">
-                <div class="product-info">
-                    <div>
-                        <div class="price">MWK 20,000</div>
-                        <div class="title">Designer Shirts & Jackets</div>
-                        <div class="details">
-                            • Size: M, L, XL, XXL<br>
-                            • Material: Cotton<br>
-                            • Condition: Brand New
-                        </div>
-                    </div>
-                    <a href="https://wa.me/265995481970?text=Kodi%20Chovala%20ichi%20chilipo?%20(MWK%2020,000)" class="btn-chat" target="_blank">💬 Is this available? (Funsa pa WhatsApp)</a>
-                </div>
-            </div>
+        if (snapshot.empty) {
+          status.textContent = "No products found yet.";
+          return;
+        }
 
-        </div>
-    </div>
+        snapshot.forEach((doc) => {
+          const p = doc.data();
+          const card = document.createElement("div");
+          card.className = "item";
 
-    <footer>
-        <p>&copy; 2026 MARLEY STORE Marketplace. Live Sales via WhatsApp.</p>
-    </footer>
+          if (p.imageUrl) {
+            const img = document.createElement("img");
+            img.src = p.imageUrl;
+            img.alt = p.name || "Product";
+            card.appendChild(img);
+          }
 
+          const name = document.createElement("h3");
+          name.textContent = p.name || p.title || "Product";
+          card.appendChild(name);
+
+          const price = document.createElement("p");
+          price.className = "price";
+          price.textContent = p.price != null
+            ? "MWK " + p.price : "Price not provided";
+          card.appendChild(price);
+
+          const category = document.createElement("p");
+          category.textContent = p.category || "";
+          card.appendChild(category);
+
+          container.appendChild(card);
+        });
+
+        status.textContent = "";
+      } catch (error) {
+        console.error(error);
+        status.textContent =
+          "Could not load products. Check Firestore settings and rules.";
+      }
+    }
+
+    loadProducts();
+  </script>
 </body>
 </html>
